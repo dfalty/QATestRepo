@@ -1,0 +1,127 @@
+---
+title: "Paged Tables"
+output:
+  html_document: default
+  html_notebook: default
+---
+This is a test document for Paged Tables.
+
+----
+Let's start with a sample dataset.
+
+```{r}
+mtcars
+```
+
+Will print() work the same?
+```{r}
+print(mtcars)
+```
+
+Does a tibble work the same way?
+```{r}
+library(nycflights13)
+flights
+```
+
+Create a small dataset
+```{r}
+numbers = c(2, 3, 5, 2, 3) 
+characters = c("wefadv", "aefbaewb", "arafcc", "aaarfaerf", "barefarb")
+bools = c(TRUE, FALSE, TRUE, TRUE, FALSE) 
+mydf1 = data_frame(numbers, characters, bools)
+mydf1
+```
+
+How about no records?
+```{r}
+mydf2 <- data_frame()
+mydf2
+```
+
+Create a dataset with different datatypes
+```{r}
+numeric <- c(32.4242, -123, 244.2333, 90294, 4223)
+integer <- c(1, 2, 3, 4, 5)
+complex <- c(3+2i, 2+3i, 44i+1, 3+2i, 2+3i)
+logical <- c(TRUE, FALSE, TRUE, FALSE, TRUE)
+character <- c("hello there", "jowi", "we", "e90oiajfoi", "d")
+double <- c(as.double(334.33), as.double(3244.3), as.double(4344), as.double(33), as.double(-3244.3))
+date <- as.Date(c('2016-8-10', '2015-2-18', '2015-2-18', '2015-2-18', '2015-2-18'))
+time <- c(Sys.time(), Sys.time(), Sys.time(), Sys.time(), Sys.time())
+html <- c("<b>bold</b>", "<i>italic</i>" , "<!-- stuff -->", "<b>bold</b>", "<IMG SRC='https://media.giphy.com/media/cEGwQzpKFKcUw/giphy.gif'")
+mydf3 <- data.frame(numeric, integer, complex, logical, character, double, date, time, html, stringsAsFactors = FALSE)
+mydf3
+```
+
+What about factors?
+```{r}
+factor <- c("adfa", "adfasdf")
+mydf4 <- data.frame(factor)
+mydf4
+```
+
+What about really long titles?
+```{r}
+short <- c(1,2)
+hereismyreallylongtitlelkwrjfoiwefjoaifnoasdjflasdkjfnaskdjfnlaskdfnjlkasdjflkasdjflaskdjflaskdjflaskdfjlaskdjfalaksdjflaskdfjlasdkjflakdsfjlasdkjfladskjflakdjflaskdjflakdjflakdsjflasdjflaksdfjlakdjflaskdjflaskdjflaskdf <- c("adfa", "adfasdf")
+short2 <- c(2,1)
+longtitles <- data.frame(short, hereismyreallylongtitlelkwrjfoiwefjoaifnoasdjflasdkjfnaskdjfnlaskdfnjlkasdjflkasdjflaskdjflaskdjflaskdfjlaskdjfalaksdjflaskdfjlasdkjflakdsfjlasdkjfladskjflakdjflaskdjflakdjflakdsjflasdjflaksdfjlakdjflaskdjflaskdjflaskdf, short2)
+longtitles
+```
+
+
+What about paragraphs?
+```{r}
+numeric <- c(32.4242, -123, 244.2333)
+integer <- c(1, 2, 3)
+complex <- c(3+2i, 2+3i, 44i+1)
+logical <- c(TRUE, FALSE, TRUE)
+character <- c("hello there", "jowi", "we")
+double <- c(as.double(334.33), as.double(3244.3), as.double(4344))
+date <- as.Date(c('2016-8-10', '2015-2-18', '2015-2-18'))
+time <- c(Sys.time(), Sys.time(), Sys.time())
+par1 <- c("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit ligula pretium urna blandit, ac eleifend nisi sodales. Vestibulum scelerisque pretium tortor, ut convallis eros scelerisque a. Duis porta posuere eleifend. Curabitur semper, urna non varius laoreet, erat quam convallis elit, quis malesuada sapien risus sed dui. Nulla finibus, nisl vel iaculis pulvinar, metus felis facilisis nisi, ac tincidunt est ipsum in elit. Proin in mauris id lectus pretium posuere. Maecenas risus risus, lobortis et tincidunt nec, elementum at ipsum. Duis interdum lectus a mauris cursus dictum. Integer rhoncus ullamcorper sodales. Fusce quis lobortis nulla. Praesent vel semper metus. Donec luctus ornare lectus id rhoncus. Pellentesque et congue sapien. Vivamus nec ante rutrum, viverra diam sed, varius risus. Nullam dignissim ultricies leo et blandit.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit ligula pretium urna blandit, ac eleifend nisi sodales. Vestibulum scelerisque pretium tortor, ut convallis eros scelerisque a. Duis porta posuere eleifend. Curabitur semper, urna non varius laoreet, erat quam convallis elit, quis malesuada sapien risus sed dui. Nulla finibus, nisl vel iaculis pulvinar, metus felis facilisis nisi, ac tincidunt est ipsum in elit. Proin in mauris id lectus pretium posuere. Maecenas risus risus, lobortis et tincidunt nec, elementum at ipsum. Duis interdum lectus a mauris cursus dictum. Integer rhoncus ullamcorper sodales. Fusce quis lobortis nulla. Praesent vel semper metus. Donec luctus ornare lectus id rhoncus. Pellentesque et congue sapien. Vivamus nec ante rutrum, viverra diam sed, varius risus. Nullam dignissim ultricies leo et blandit.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit ligula pretium urna blandit, ac eleifend nisi sodales. Vestibulum scelerisque pretium tortor, ut convallis eros scelerisque a. Duis porta posuere eleifend. Curabitur semper, urna non varius laoreet, erat quam convallis elit, quis malesuada sapien risus sed dui. Nulla finibus, nisl vel iaculis pulvinar, metus felis facilisis nisi, ac tincidunt est ipsum in elit. Proin in mauris id lectus pretium posuere. Maecenas risus risus, lobortis et tincidunt nec, elementum at ipsum. Duis interdum lectus a mauris cursus dictum. Integer rhoncus ullamcorper sodales. Fusce quis lobortis nulla. Praesent vel semper metus. Donec luctus ornare lectus id rhoncus. Pellentesque et congue sapien. Vivamus nec ante rutrum, viverra diam sed, varius risus. Nullam dignissim ultricies leo et blandit.")
+par2 <- c("Lorem ipsum ", "Lorem ipsum ", "Lorem ipsum", "Lorem ipsum ", "Lorem ipsum ", "Lorem ipsum ", "Lorem ipsum ", "Lorem ipsum ", "Lorem ipsum ", "Lorem ipsum ", "Lorem ipsum ", "Lorem ipsum ", "Lorem ipsum ", "Lorem ipsum ", "Lorem ipsum ")
+par3 <- c("Lorem ipsum ", "Lorem ipsum ", "Lorem ipsum")
+mydf5 <- data.frame(numeric, integer, complex, logical, character, double, date, time, par1, par2, par3)
+mydf5
+```
+
+
+
+Import a big messy dataset
+```{r}
+library(readr)
+consumercomplaints <- read_csv("https://data.consumerfinance.gov/api/views/s6ew-h6mp/rows.csv?accessType=DOWNLOAD")
+```
+
+How does the big messy one look?
+```{r}
+consumercomplaints
+```
+
+Does head() and tail() work as expected?
+```{r}
+head(consumercomplaints, n=5)
+```
+
+```{r}
+tail(consumercomplaints, n=13)
+```
+
+How about dplyr?
+```{r}
+library(dplyr)
+filter(flights, month == 1, day == 1)
+arrange(flights, year, month, day)
+select(flights, year, month, day)
+distinct(flights, origin, dest)
+summarise(flights,
+  delay = mean(dep_delay, na.rm = TRUE))
+```
+
+
+```{r}
+mtcars %>% print() %>% filter(cyl == 4)
+```
