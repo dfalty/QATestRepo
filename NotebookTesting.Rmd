@@ -145,7 +145,7 @@ library(magrittr)
 library(highcharter)
 highchart() %>% 
   hc_title(text = "Scatter chart with size and color") %>% 
-  hc_add_serie_scatter(mtcars$wt, mtcars$mpg,
+  hc_add_series_scatter(mtcars$wt, mtcars$mpg,
                        mtcars$drat, mtcars$hp)
 ```
 
@@ -332,3 +332,107 @@ rasterImage(jj,0,0,1,1)
   x <- 1:100
   x
 ```
+
+###RStudio inception issue
+```{r}
+library(leaflet)
+m = leaflet() %>% addTiles()
+m  # a map with the default OSM tile layer
+
+m = m %>% setView(-93.65, 42.0285, zoom = 17)
+m
+```
+
+###HTML widgets all together now
+```{r}
+library(dygraphs)
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01"))
+
+library(plotly)
+p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
+            geom_bar(position = "dodge")
+ggplotly(p)
+
+library(rbokeh)
+figure(width = NULL, height = NULL) %>%
+  ly_points(Sepal.Length, Sepal.Width, data = iris,
+    color = Species, glyph = Species,
+    hover = list(Sepal.Length, Sepal.Width))
+
+library(magrittr)
+library(highcharter)
+highchart() %>% 
+  hc_title(text = "Scatter chart with size and color") %>% 
+  hc_add_series_scatter(mtcars$wt, mtcars$mpg,
+                       mtcars$drat, mtcars$hp)
+
+library(visNetwork)
+nodes <- data.frame(id = 1:6, title = paste("node", 1:6), 
+                    shape = c("dot", "square"),
+                    size = 10:15, color = c("blue", "red"))
+edges <- data.frame(from = 1:5, to = c(5, 4, 6, 3, 3))
+visNetwork(nodes, edges) %>%
+  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
+
+library(networkD3)
+data(MisLinks, MisNodes)
+forceNetwork(Links = MisLinks, Nodes = MisNodes, Source = "source",
+             Target = "target", Value = "value", NodeID = "name",
+             Group = "group", opacity = 0.4)
+
+library(d3heatmap)
+d3heatmap(mtcars, scale="column", colors="Blues")
+
+library(DT)
+datatable(iris)
+
+library(threejs)
+z <- seq(-10, 10, 0.01)
+x <- cos(z)
+y <- sin(z)
+scatterplot3js(x,y,z, color=rainbow(length(z)))
+
+library(rgl)
+library(rglwidget)
+library(htmltools)
+
+theta <- seq(0, 6*pi, len=100)
+xyz <- cbind(sin(theta), cos(theta), theta)
+lineid <- plot3d(xyz, type="l", alpha = 1:0, 
+                 lwd = 5, col = "blue")["data"]
+
+browsable(tagList(
+  rglwidget(elementId = "example", width = 500, height = 400,
+            controllers = "player"),
+  playwidget("example", 
+             ageControl(births = theta, ages = c(0, 0, 1),
+                        objids = lineid, alpha = c(0, 1, 0)),
+                        start = 1, stop = 6*pi, step = 0.1, 
+                        rate = 6,elementId = "player")
+))
+
+library(DiagrammeR)
+grViz("
+  digraph {
+    layout = twopi
+    node [shape = circle]
+    A -> {B C D} 
+  }")
+
+library(metricsgraphics)
+mjs_plot(mtcars, x=wt, y=mpg) %>%
+  mjs_point(color_accessor=carb, size_accessor=carb) %>%
+  mjs_labs(x="Weight of Car", y="Miles per Gallon")
+
+library(leaflet)
+
+m <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+m  # Print the map
+
+```
+
+
+
