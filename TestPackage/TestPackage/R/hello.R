@@ -17,10 +17,10 @@ hello <- function() {
   print("Hello, world!")
 }
 
-hello2 <- function() {
-  print("Hello, world!")
-  x<-1
-  x
-}
+
+
+
+
+
 
 
