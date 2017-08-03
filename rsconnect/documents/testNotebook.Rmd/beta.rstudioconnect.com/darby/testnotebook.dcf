@@ -1,0 +1,12 @@
+name: testnotebook
+title: testNotebook
+username: darby
+account: darby
+server: beta.rstudioconnect.com
+hostUrl: https://beta.rstudioconnect.com/__api__
+appId: 2944
+bundleId: 6319
+url: https://beta.rstudioconnect.com/content/2944/
+when: 1501791976.28976
+asMultiple: FALSE
+asStatic: FALSE
