@@ -71,7 +71,7 @@ const Movie = {
   }
 }
 
-VThis is a testThis is a testue.component('search', {
+Vue.component('search', {
   template:'<div>Search: <input v-model="query" v-on:keyup.enter="search"></input><button v-on:click="search">Search</button><ul><li v-for="r in results"><router-link :to="r.link">{{ r.title }}</router-link></li></ul></div>',
   data: function(){
     return { 
